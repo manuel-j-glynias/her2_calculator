@@ -1,38 +1,263 @@
 .App {
-  text-align: center;
+}
+.m-1 {
+  margin: 1rem;
+}
+.my-0 {
+  margin: 0 0;
+}
+.my-1 {
+  margin: 1rem 0;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.p-1 {
+  padding: 1rem;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.py-1 {
+  padding: 1rem 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.m-2 {
+  margin: 2rem;
+}
+
+.my-2 {
+  margin: 2rem 0;
+}
+
+.p-2 {
+  padding: 2rem;
+}
+
+.py-2 {
+  padding: 2rem 0;
+}
+
+.m-3 {
+  margin: 3rem;
+}
+
+.my-3 {
+  margin: 3rem 0;
+}
+
+.p-3 {
+  padding: 3rem;
+}
+
+.py-3 {
+  padding: 3rem 0;
+}
+
+.m-4 {
+  margin: 4rem;
+}
+
+.my-4 {
+  margin: 4rem 0;
+}
+
+.p-4 {
+  padding: 4rem;
+}
+
+.py-4 {
+  padding: 4rem 0;
+}
+
+.m-5 {
+  margin: 5rem;
+}
+
+.my-5 {
+  margin: 5rem 0;
+}
+
+.p-5 {
+  padding: 5rem;
+}
+
+.py-5 {
+  padding: 5rem 0;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-right: 0.5rem;
+  outline: none;
+  transition: all 0.2s ease-in;
+}
+.btn:disabled {
+  text-decoration: line-through;
+}
+.btn.btn-primary {
+  background-color: #17a2b8;
+  color: #fff;
+}
+.btn.btn-primary:hover {
+  background: #1ab6cf;
+}
+.btn.btn-dark {
+  background-color: #343a40;
+  color: #fff;
+}
+.btn.btn-dark:hover {
+  background: #3f474e;
+}
+.btn.btn-success {
+  background-color: #28a745;
+  color: #fff;
+}
+.btn.btn-success:hover {
+  background: #2dbc4e;
+}
+.btn.btn-danger {
+  background-color: #dc3545;
+  color: #fff;
+}
+.btn.btn-danger:hover {
+  background: #e04b59;
+}
+.btn:hover {
+  background: #626d78;
+  color: #fff;
+}
+
+.HER2__LongTextarea {
+  display: block;
+  text-align: left;
+  width: 420px;
+  height: 30px;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  font-family: 'Lato', sans-serif;
+}
+
+.HER2__ShortTextarea {
+  display: block;
+  text-align: right;
+  width: 100px;
+  height: 30px;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+  font: inherit;
+}
+
+.HER2 {
+  top:0px;
+  height: 100vh;
+  max-height: 100%;
+  width: 900px;
+  overflow:  auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+
+.HER2__title {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.HER2__Wrapper {
+  display: grid;
+  grid-template-columns: 300px 500px;
+  grid-row-gap: 30px;
+  grid-auto-rows: minmax(30px, auto);
+  align-items: flex-start;
+}
+
+.HER2__Wrapper > div{
+  font-family: 'Lato', sans-serif;
+  font-size: 1.2rem;
+}
+
+.HER2__Wrapper_Span {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+}
+.HER2__Wrapper > div:nth-child(odd){
+  padding-left: 5px;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.HER2__Wrapper > div:nth-child(even){
+  padding-left: 5px;
+  padding-top: 5px;
+  /*border-top-style: solid;*/
+  /*border-bottom-style: solid;*/
+  /*border-left-style: solid;*/
+
+  /*border-right-style: solid;*/
+  /*border-width: thin;*/
+  /*border-color: #2A508F;*/
+}
+.HER2__Link{
+  color: blue;
+  text-decoration: underline;
+}
+
+.HER2__select {
+  width: 180px;
+}
+
+.form-group {
+  margin: 1.2rem 0;
+}
+
+.listHorizontal {
+  margin: 0;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+  justify-content: space-around;
+  list-style: none;
+  padding-inline-start: 0px;
+  width: 400px;
 
-.App-link {
-  color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.interpretation_header {
+  margin-bottom: 20px;
+}
+.references {
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+.fish_iscn {
+  margin-bottom: 30px;
+}
+.test_header {
+  font-size: larger;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.top_header {
+  font-weight: bold;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+.left_header {
+  font-weight: bold;
+  margin-right: 10px;
+}
+.left_header2 {
+  font-weight: bold;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+.signature {
+  margin-bottom: 10px;
+}
+.report {
+  margin-bottom: 100px;
 }
