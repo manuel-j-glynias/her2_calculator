@@ -143,7 +143,6 @@ function App() {
     return (
 
         <div className={className}>
-            <h1>Her2 Calculator</h1>
             <h2 className={`${className}__title`}>Her2 IHC / Dual Probe ISH Assay</h2>
             <div className={`${className}__Wrapper`}>
                 <div >Specimen</div>
