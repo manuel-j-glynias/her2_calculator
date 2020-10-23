@@ -224,37 +224,11 @@
   width: 400px;
 
 }
-.interpretation_header {
-  margin-bottom: 20px;
-}
-.references {
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
+
 .fish_iscn {
   margin-bottom: 30px;
 }
-.test_header {
-  font-size: larger;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.top_header {
-  font-weight: bold;
-  margin-top: 30px;
-  margin-bottom: 10px;
-  font-size: 1.2rem;
-}
-.left_header {
-  font-weight: bold;
-  margin-right: 10px;
-}
-.left_header2 {
-  font-weight: bold;
-  margin-right: 10px;
-  margin-left: 20px;
-}
+
 .signature {
   margin-bottom: 10px;
 }
