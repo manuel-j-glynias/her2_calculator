@@ -6,6 +6,7 @@ import CountsInputPanel from "./components/CountsInputPanel";
 import ReportResults from "./components/ReportResults";
 import InterpretationPanel from "./components/InterpretationPanel";
 import ReportFooter from "./components/ReportFooter";
+import useClippy from 'use-clippy';
 
 
 const className = 'HER2';
@@ -39,6 +40,9 @@ function App() {
     const [report_generate, set_report_generate] = React.useState(false);
 
     const [copySuccess, set_copySuccess] = React.useState('');
+
+
+    const [ clipboard, setClipboard ] = useClippy();
 
 
     const reset = () => {
@@ -137,25 +141,29 @@ function App() {
 
         if (copyText != null) {
             const textToCopy = copyText.innerText;
-            if (isIE) {
-                if ((window as any).clipboardData) {
-                    (window as any).setData('Text', textToCopy);
-                    set_copySuccess('Copied!')
+            setClipboard(textToCopy)
+            set_copySuccess('Copied!')
                     setTimeout(function () {
                         set_copySuccess('')
                     }, 2000);
-                }
-                else {
-                    set_copySuccess('copy failed!')
-                }
-
-            } else {
-                navigator.clipboard.writeText(textToCopy)
-                set_copySuccess('Copied!')
-                setTimeout(function () {
-                    set_copySuccess('')
-                }, 2000);
-            }
+            //     if ((window as any).clipboardData) {
+            //         (window as any).setData('Text', textToCopy);
+            //         set_copySuccess('Copied!')
+            //         setTimeout(function () {
+            //             set_copySuccess('')
+            //         }, 2000);
+            //     }
+            //     else {
+            //         set_copySuccess('copy failed!')
+            //     }
+            //
+            // } else {
+            //     navigator.clipboard.writeText(textToCopy)
+            //     set_copySuccess('Copied!')
+            //     setTimeout(function () {
+            //         set_copySuccess('')
+            //     }, 2000);
+            // }
         }
     }
 
