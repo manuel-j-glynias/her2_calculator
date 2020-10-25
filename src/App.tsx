@@ -139,15 +139,16 @@ function App() {
             const textToCopy = copyText.innerText;
             if (isIE) {
                 try {
-                    // @ts-ignore
-                    window.clipboardData.setData('Text', textToCopy);
-                    console.log('Copying text command via IE-setData');
-                    set_copySuccess('Copied!')
-                    setTimeout(function () {
-                        set_copySuccess('')
-                    }, 2000);
+
+                    if ((window as any).clipboardData) {
+                        (window as any).setData('Text', textToCopy);
+                        set_copySuccess('Copied!')
+                        setTimeout(function () {
+                            set_copySuccess('')
+                        }, 2000);
+                    }
                 } catch (err) {
-                    console.log('Oops, unable to copy via IE-setData');
+                    set_copySuccess('Oops, unable to copy via IE-setData:'+ err.toString());
                 }
             } else {
                 navigator.clipboard.writeText(textToCopy)
