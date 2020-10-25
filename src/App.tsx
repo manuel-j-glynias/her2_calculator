@@ -141,7 +141,7 @@ function App() {
 
         if (copyText != null) {
             let textToCopy = copyText.innerText;
-            textToCopy = textToCopy.replace(/(\r\n|\n|\r)/gm, " ");
+            textToCopy = textToCopy.replace(/(\r\n|\n|\r)/gm, "\r");
             setClipboard(textToCopy)
             set_copySuccess('Copied!')
                     setTimeout(function () {

@@ -30,8 +30,8 @@ const InterpretationPanel : React.FC<Props> = ({result,group}) => {
     const [interpretation_body, set_interpretation_body] = useState('');
 
     const add_interpretation = () => {
-        console.log('group',group)
-        console.log('result',result)
+        // console.log('group',group)
+        // console.log('result',result)
         switch (group){
             case 1: {
                 set_interpretation_header(evidence);
