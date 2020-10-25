@@ -128,18 +128,38 @@ function App() {
     }
 
 
-
     const handle_copy = () => {
         const copyText = document.getElementById("report");
-        if (copyText != null)
-        {
-            navigator.clipboard.writeText(copyText.innerText)
-            set_copySuccess('Copied!')
-            setTimeout(function () {
-                set_copySuccess('')
-            }, 2000);
+        var ua = window.navigator.userAgent;
+
+        var msie = ua.indexOf('MSIE ');
+        const isIE: boolean = msie > 0
+
+        if (copyText != null) {
+            const textToCopy = copyText.innerText;
+            if (isIE) {
+                try {
+                    // @ts-ignore
+                    window.clipboardData.setData('Text', textToCopy);
+                    console.log('Copying text command via IE-setData');
+                    set_copySuccess('Copied!')
+                    setTimeout(function () {
+                        set_copySuccess('')
+                    }, 2000);
+                } catch (err) {
+                    console.log('Oops, unable to copy via IE-setData');
+                }
+            } else {
+                navigator.clipboard.writeText(textToCopy)
+                set_copySuccess('Copied!')
+                setTimeout(function () {
+                    set_copySuccess('')
+                }, 2000);
+            }
         }
     }
+
+
     return (
 
         <div className={className}>
