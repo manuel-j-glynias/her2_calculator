@@ -140,30 +140,13 @@ function App() {
         const isIE: boolean = msie > 0
 
         if (copyText != null) {
-            const textToCopy = copyText.innerText;
+            let textToCopy = copyText.innerText;
+            textToCopy = textToCopy.replace(/(\r\n|\n|\r)/gm, " ");
             setClipboard(textToCopy)
             set_copySuccess('Copied!')
                     setTimeout(function () {
                         set_copySuccess('')
                     }, 2000);
-            //     if ((window as any).clipboardData) {
-            //         (window as any).setData('Text', textToCopy);
-            //         set_copySuccess('Copied!')
-            //         setTimeout(function () {
-            //             set_copySuccess('')
-            //         }, 2000);
-            //     }
-            //     else {
-            //         set_copySuccess('copy failed!')
-            //     }
-            //
-            // } else {
-            //     navigator.clipboard.writeText(textToCopy)
-            //     set_copySuccess('Copied!')
-            //     setTimeout(function () {
-            //         set_copySuccess('')
-            //     }, 2000);
-            // }
         }
     }
 
