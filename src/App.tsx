@@ -147,6 +147,9 @@ function App() {
                             set_copySuccess('')
                         }, 2000);
                     }
+                    else {
+                        set_copySuccess('if clause failed!!')
+                    }
                 } catch (err) {
                     set_copySuccess('Oops, unable to copy via IE-setData:'+ err.toString());
                 }

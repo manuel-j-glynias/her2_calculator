@@ -49,7 +49,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603477547272</updated>
-      <workItem from="1603477548689" duration="2635000" />
+      <workItem from="1603477548689" duration="2885000" />
     </task>
     <task id="LOCAL-00001" summary="added polyfill for ie 11">
       <created>1603478235785</created>
@@ -65,7 +65,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603639563768</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="2nd attempt at ie copy">
+      <created>1603640591641</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1603640591641</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -85,20 +92,21 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="added polyfill for ie 11" />
     <MESSAGE value="fix for copy on ie" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix for copy on ie" />
+    <MESSAGE value="2nd attempt at ie copy" />
+    <option name="LAST_COMMIT_MESSAGE" value="2nd attempt at ie copy" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="425" y="134" key="CommitChangelistDialog2" timestamp="1603639563566">
+    <state x="425" y="134" key="CommitChangelistDialog2" timestamp="1603640591459">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="425" y="134" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603639563566" />
+    <state x="425" y="134" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603640591459" />
     <state x="345" y="168" key="SettingsEditor" timestamp="1603639610641">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="345" y="168" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1603639610641" />
-    <state x="444" y="270" key="Vcs.Push.Dialog.v2" timestamp="1603639566556">
+    <state x="444" y="270" key="Vcs.Push.Dialog.v2" timestamp="1603640593985">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="444" y="270" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603639566556" />
+    <state x="444" y="270" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603640593985" />
   </component>
 </project>
