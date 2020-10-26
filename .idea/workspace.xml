@@ -3,8 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="8606da2e-85ea-4641-b094-63ac7a075955" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/InterpretationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InterpretationPanel.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportFooter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportFooter.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/ReportResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportResults.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,7 +52,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603477547272</updated>
-      <workItem from="1603477548689" duration="5270000" />
+      <workItem from="1603477548689" duration="7799000" />
     </task>
     <task id="LOCAL-00001" summary="added polyfill for ie 11">
       <created>1603478235785</created>
@@ -101,7 +103,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603662060559</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="one cr for cr/lf">
+      <created>1603662745028</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1603662745028</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,24 +135,25 @@
     <MESSAGE value="one more try for ie copy" />
     <MESSAGE value="using clippy" />
     <MESSAGE value="delete lf/cr" />
-    <option name="LAST_COMMIT_MESSAGE" value="delete lf/cr" />
+    <MESSAGE value="one cr for cr/lf" />
+    <option name="LAST_COMMIT_MESSAGE" value="one cr for cr/lf" />
   </component>
   <component name="WindowStateProjectService">
     <state x="579" y="339" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603661509729">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="579" y="339" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1603661509729" />
-    <state x="425" y="134" key="CommitChangelistDialog2" timestamp="1603662060358">
+    <state x="425" y="134" key="CommitChangelistDialog2" timestamp="1603662744846">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="425" y="134" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603662060358" />
+    <state x="425" y="134" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603662744846" />
     <state x="345" y="168" key="SettingsEditor" timestamp="1603639610641">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="345" y="168" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1603639610641" />
-    <state x="444" y="270" key="Vcs.Push.Dialog.v2" timestamp="1603662062761">
+    <state x="444" y="270" key="Vcs.Push.Dialog.v2" timestamp="1603662747698">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="444" y="270" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603662062761" />
+    <state x="444" y="270" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603662747698" />
   </component>
 </project>

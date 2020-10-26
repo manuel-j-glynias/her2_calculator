@@ -30,9 +30,7 @@ const InterpretationPanel : React.FC<Props> = ({result,group}) => {
     const [interpretation_body, set_interpretation_body] = useState('');
 
     const add_interpretation = () => {
-        // console.log('group',group)
-        // console.log('result',result)
-        switch (group){
+         switch (group){
             case 1: {
                 set_interpretation_header(evidence);
                 set_interpretation_body(group1);
@@ -80,29 +78,28 @@ const InterpretationPanel : React.FC<Props> = ({result,group}) => {
         }
     }
     useEffect(add_interpretation,[group,result])
+
+    const getPre = () => {
+        var pre = `Her2, Breast Tumor, IHC/FISH
+
+Result Summary:  ${result.toUpperCase()}
+
+Interpretation:
+   ${interpretation_header}
+   ${interpretation_body}
+
+References:
+   1.  Wolff, et al.  J Clin Oncol, 36(20)2105-2122, 2018
+`
+        return pre
+    }
+
     return (
          <div>
-
-             <div>Her2, Breast Tumor, IHC/FISH</div>
-            <br/>
-            <div>Result Summary:  {result.toUpperCase()}</div>
-            <br/>
-            <div>Interpretation:</div>
-            <div>{interpretation_header}</div>
-             <br/>
-            <div>{interpretation_body}</div>
-             <br/>
-            <div>
-                References:
-            </div>
-            <div>
-                <ol>
-                    <li>Wolff, et al.  J Clin Oncol, 36(20)2105-2122, 2018</li>
-                </ol>
-            </div>
-            <br/>
-
-        </div>
+            <pre className={'pre'}>
+            {getPre()}
+            </pre>
+         </div>
     )
 
 
@@ -110,3 +107,25 @@ const InterpretationPanel : React.FC<Props> = ({result,group}) => {
 }
 
 export default InterpretationPanel;
+
+
+//             <div>Her2, Breast Tumor, IHC/FISH</div>
+//             <br/>
+//             <div>Result Summary:  {result.toUpperCase()}</div>
+//             <br/>
+//             <div>Interpretation:</div>
+//             <div>{interpretation_header}</div>
+//              <br/>
+//             <div>{interpretation_body}</div>
+//              <br/>
+//             <div>
+//                 References:
+//             </div>
+//             <div>
+//                 <ol>
+//                     <li>Wolff, et al.  J Clin Oncol, 36(20)2105-2122, 2018</li>
+//                 </ol>
+//             </div>
+//             <br/>
+//
+//         </div>

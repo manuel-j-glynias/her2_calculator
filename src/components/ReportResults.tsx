@@ -10,17 +10,25 @@ interface Props {
 
 const ReportResults : React.FC<Props> = ({ihc,num_cep17,num_her2, num_nuclei,ratio}) => {
 
+    const getPre = ():string => {
+        var pre = `
+Results:
+    HER2 IHC: ${ihc}
+    nuc ish(CEP17)x${(num_cep17/num_nuclei).toFixed(0)},(Her2)x${(num_her2/num_nuclei).toFixed(0)}[${num_nuclei}]
+    HER2/CEP17 ratio: ${ratio.toFixed(2)}
+    Average HER2 signals per cell: ${(num_her2/num_nuclei).toFixed(1)}
+    Average CEP17 signals per cell: ${(num_cep17/num_nuclei).toFixed(1)}`
+        return pre
+    }
+
     return (
         <div>
-            <div>Results:</div>
-            <div>&nbsp;&nbsp;&nbsp;<span >HER2 IHC:&nbsp;</span>{ihc}</div>
-            <div>&nbsp;&nbsp;&nbsp;nuc ish(CEP17)x{(num_cep17/num_nuclei).toFixed(0)},(Her2)x{(num_her2/num_nuclei).toFixed(0)}[{num_nuclei}]</div>
-            <div>&nbsp;&nbsp;&nbsp;<span >HER2/CEP17 ratio:&nbsp;</span>{ratio.toFixed(2)}</div>
-            <div>&nbsp;&nbsp;&nbsp;<span >Average HER2 signals per cell:&nbsp;</span>{(num_her2/num_nuclei).toFixed(1)}</div>
-            <div>&nbsp;&nbsp;&nbsp;<span >Average CEP17 signals per cell:&nbsp;</span>{(num_cep17/num_nuclei).toFixed(1)}</div>
-            <br/>
+            <pre className={'pre'}>
+            {getPre()}
+            </pre>
         </div>
     )
 }
 
 export default ReportResults;
+

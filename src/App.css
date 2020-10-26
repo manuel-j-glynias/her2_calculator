@@ -235,3 +235,10 @@
 .report {
   margin-bottom: 100px;
 }
+
+.pre {
+  display: block;;
+  font-family: 'Lato', sans-serif;
+  white-space: pre;
+
+}
