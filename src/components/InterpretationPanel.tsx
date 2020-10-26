@@ -85,8 +85,9 @@ const InterpretationPanel : React.FC<Props> = ({result,group}) => {
 Result Summary:  ${result.toUpperCase()}
 
 Interpretation:
-   ${interpretation_header}
-   ${interpretation_body}
+
+${interpretation_header}
+${interpretation_body}
 
 References:
    1.  Wolff, et al.  J Clin Oncol, 36(20)2105-2122, 2018
@@ -108,24 +109,3 @@ References:
 
 export default InterpretationPanel;
 
-
-//             <div>Her2, Breast Tumor, IHC/FISH</div>
-//             <br/>
-//             <div>Result Summary:  {result.toUpperCase()}</div>
-//             <br/>
-//             <div>Interpretation:</div>
-//             <div>{interpretation_header}</div>
-//              <br/>
-//             <div>{interpretation_body}</div>
-//              <br/>
-//             <div>
-//                 References:
-//             </div>
-//             <div>
-//                 <ol>
-//                     <li>Wolff, et al.  J Clin Oncol, 36(20)2105-2122, 2018</li>
-//                 </ol>
-//             </div>
-//             <br/>
-//
-//         </div>

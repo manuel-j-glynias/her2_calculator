@@ -3,10 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8606da2e-85ea-4641-b094-63ac7a075955" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/InterpretationPanel.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/InterpretationPanel.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/ReportFooter.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportFooter.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/ReportResults.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/ReportResults.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +50,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1603477547272</updated>
-      <workItem from="1603477548689" duration="7799000" />
+      <workItem from="1603477548689" duration="8115000" />
     </task>
     <task id="LOCAL-00001" summary="added polyfill for ie 11">
       <created>1603478235785</created>
@@ -110,7 +108,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603662745028</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="switched to &lt;pre&gt; for report text">
+      <created>1603740193715</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1603740193715</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,24 +141,25 @@
     <MESSAGE value="using clippy" />
     <MESSAGE value="delete lf/cr" />
     <MESSAGE value="one cr for cr/lf" />
-    <option name="LAST_COMMIT_MESSAGE" value="one cr for cr/lf" />
+    <MESSAGE value="switched to &lt;pre&gt; for report text" />
+    <option name="LAST_COMMIT_MESSAGE" value="switched to &lt;pre&gt; for report text" />
   </component>
   <component name="WindowStateProjectService">
     <state x="579" y="339" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1603661509729">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="579" y="339" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1680.1027@0.23.1680.1027" timestamp="1603661509729" />
-    <state x="425" y="134" key="CommitChangelistDialog2" timestamp="1603662744846">
+    <state x="425" y="134" key="CommitChangelistDialog2" timestamp="1603740193484">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="425" y="134" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603662744846" />
+    <state x="425" y="134" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1603740193484" />
     <state x="345" y="168" key="SettingsEditor" timestamp="1603639610641">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
     <state x="345" y="168" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1603639610641" />
-    <state x="444" y="270" key="Vcs.Push.Dialog.v2" timestamp="1603662747698">
+    <state x="444" y="270" key="Vcs.Push.Dialog.v2" timestamp="1603740195973">
       <screen x="0" y="23" width="1680" height="1027" />
     </state>
-    <state x="444" y="270" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603662747698" />
+    <state x="444" y="270" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1603740195973" />
   </component>
 </project>
