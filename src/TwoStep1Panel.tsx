@@ -32,6 +32,16 @@ const TwoStep1Panel : React.FC<Props> = ({userName,set_results}) => {
         }
         return variables;
     }
+    const initialize = () => {
+        set_specimen('Tissue, Slides, Formalin')
+        set_source('Breast')
+        set_tissue_id('')
+        set_num_nuclei(20)
+        set_num_her2(0)
+        set_num_cep17(0)
+        reset()
+    }
+
 
     const reset = () => {}
     const save = () => {
@@ -68,6 +78,8 @@ const TwoStep1Panel : React.FC<Props> = ({userName,set_results}) => {
                 <div></div>
                 <div>
                     <button className="btn btn-primary my-1" onClick={() => save()}>Save</button>
+                    <button className="btn btn-primary my-1" onClick={() => initialize()}>Reset</button>
+
                     {saveSuccess}
                 </div>
             </div>

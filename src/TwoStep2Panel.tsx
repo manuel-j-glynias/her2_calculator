@@ -9,6 +9,7 @@ import CountsInputPanel from "./components/CountsInputPanel";
 import InterpretationPanel from "./components/InterpretationPanel";
 import ReportResults from "./components/ReportResults";
 import ReportFooter from "./components/ReportFooter";
+import ReportRecountedResults from "./components/ReportRecountedResults";
 
 
 interface Props {
@@ -57,6 +58,16 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
         set_recalculated(false)
     }
     const fake_reset = () => {}
+    const initialize = () => {
+        // set_specimen('Tissue, Slides, Formalin')
+        // set_source('Breast')
+        // set_tissue_id('')
+        set_ihc('0')
+        set_num_nuclei(20)
+        set_num_her2(0)
+        set_num_cep17(0)
+        reset()
+    }
 
 
     const handle_ihc_Change = async (event:any) => {
@@ -125,7 +136,12 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
                 }
                 else {
                     set_group(5)
-                    set_result(negative_result)
+                    if (ihc  === '3+'){
+                        set_result(positive_result)
+                    }
+                    else {
+                        set_result(negative_result)
+                    }
                 }
             }
             set_calculated(true)
@@ -140,10 +156,10 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
 
     const handle_copy = () => {
         const copyText = document.getElementById("report");
-        var ua = window.navigator.userAgent;
-
-        var msie = ua.indexOf('MSIE ');
-        const isIE: boolean = msie > 0
+        // var ua = window.navigator.userAgent;
+        //
+        // var msie = ua.indexOf('MSIE ');
+        // const isIE: boolean = msie > 0
 
         if (copyText != null) {
             let textToCopy = copyText.innerText;
@@ -179,6 +195,7 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
                 <div></div>
                 <div>
                     <button className="btn btn-primary my-1" onClick={() => calc()}>Calculate</button>
+                    <button className="btn btn-primary my-1" onClick={() => initialize()}>Reset</button>
                 </div>
             </div>
                 <div>
@@ -227,8 +244,12 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
                                 </div>
 
                                 <div id={'report'} className={'report'}>
-                                    <InterpretationPanel result={result} group={group}/>
-                                    <ReportResults ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio}/>
+                                    <InterpretationPanel  ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio} result={result} group={group}/>
+                                    {recalculated ?
+                                        <ReportRecountedResults ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio}
+                                                                num_recounted_cep17={num_recount_cep17} num_recounted_her2={num_recount_her2} num_recounted_nuclei={num_recount_nuclei} recount_ratio={recount_ratio}/> :
+                                        <ReportResults ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio}/>
+                                    }
                                     <ReportFooter specimen={specimen} source={source} tissue_id={tissue_id}/>
                                 </div>
                             </div>

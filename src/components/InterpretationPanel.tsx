@@ -1,83 +1,82 @@
 import React, {useState,useEffect} from "react";
 
 interface Props {
+    ihc:string;
+    num_cep17: number;
+    num_her2: number;
+    num_nuclei: number;
+    ratio: number;
     result: string;
     group: number;
 }
 
-const InterpretationPanel : React.FC<Props> = ({result,group}) => {
-
-    const evidence = 'There is evidence of HER2 (ERBB2) gene amplification in this tumor sample.'
-    const no_evidence = 'There is no evidence of HER2 (ERBB2) gene amplification in this tumor sample.'
-
-    const group1 = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration greater than or equal to 2.0 and an average HER2 copy number greater than 4.0 signals per cell are interpreted as ISH positive (Group 1) (1)';
-    const group2_3plus = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration greater than or equal to 2.0 but with an average HER2 copy number less than 4.0 signals per cell and a HER2 IHC of 3+ are interpreted as ISH positive (Group 2) (1)'
-    const group3_3plus = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration less than 2.0 but with an average HER2 copy number greater than 6.0 signals per cell and a HER2 IHC of 3+ are interpreted as ISH positive (Group 3) (1)'
-    const group4_3plus = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration less than 2.0 but with an average HER2 copy number greater than 4.0 and less than 6.0 signals per cell and a HER2 IHC of 3+ are interpreted as ISH positive (Group 4) (1)'
-
-    const group2_lowIHC = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration greater than or equal to 2.0 but with an average HER2 copy number less than 4.0 signals per cell and a HER2 IHC of 0 or 1+ are interpreted as ISH negative (Group 2) (1)'
-    const group3_lowIHC = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration less than 2.0 but with an average HER2 copy number greater than 6.0 signals per cell and a HER2 IHC of 0 or 1+ are interpreted as ISH negative (Group 3) (1)'
-    const group4_lowIHC = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration less than 2.0 but with an average HER2 copy number greater than 4.0 and less than 6.0 signals per cell and a HER2 IHC of 0 or 1+ are interpreted as ISH negative (Group 4) (1)'
-
-
-    const group5 = 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, dual-probe in situ hybridization (ISH) results indicating a HER2/centromere ration less than 2.0 and an average HER2 copy number less than 4.0 signals per cell are interpreted as ISH negative (Group 5) (1)';
-
-    const positive_result = 'Positive'
-    const negative_result = 'Negative'
+const InterpretationPanel : React.FC<Props> = ({ihc, num_cep17,num_her2,num_nuclei,ratio,result,group}) => {
 
 
     const [interpretation_header, set_interpretation_header] = useState('');
     const [interpretation_body, set_interpretation_body] = useState('');
 
-    const add_interpretation = () => {
-         switch (group){
-            case 1: {
-                set_interpretation_header(evidence);
-                set_interpretation_body(group1);
-                break;
+    const add_ihc = () :string => {
+        let body = ""
+        if (group > 1 && group<5){
+            if (ihc==="3+")
+                body = ` by IHC (1).\n\nIHC was performed on this sample per ASCO/CAP guidelines and was positive (${ihc}) (results reported separately).`
+            else if (ihc==="2+"){
+                body = ` by counting an additional 
+20 cells in a separate part of the tumor.`
             }
-            case 2: {
-                if (result===positive_result){
-                    set_interpretation_header(evidence)
-                    set_interpretation_body(group2_3plus)
-                }
-                else if (result===negative_result){
-                    set_interpretation_header(no_evidence)
-                    set_interpretation_body(group2_lowIHC)
-                }
-                break;
-            }
-            case 3: {
-                if (result===positive_result){
-                    set_interpretation_header(evidence)
-                    set_interpretation_body(group3_3plus)
-                }
-                else if (result===negative_result){
-                    set_interpretation_header(no_evidence)
-                    set_interpretation_body(group3_lowIHC)
-                }
-                break;
-            }
-            case 4: {
-                if (result===positive_result){
-                    set_interpretation_header(evidence)
-                    set_interpretation_body(group4_3plus)
-
-                }
-                else if (result===negative_result){
-                    set_interpretation_header(no_evidence)
-                    set_interpretation_body(group4_lowIHC)
-                }
-                break;
-            }
-            case 5: {
-                set_interpretation_header(no_evidence)
-                set_interpretation_body(group5)
-                break;
+            else {
+                body = ` by IHC (1).\n\nIHC was performed on this sample per ASCO/CAP guidelines and was negative (${ihc}) (results reported separately).`
             }
         }
+        if (group==5 && ihc==="3+"){
+            body = `\n\nIHC was performed on this sample per ASCO/CAP guidelines and was positive (${ihc}) (results reported separately).`
+        }
+        return body;
     }
-    useEffect(add_interpretation,[group,result])
+
+    const add_interpretation = () => {
+        let header = `The initial evaluation demonstrated a HER2/centromere ratio of ${ratio.toFixed(2)} and an average HER2 
+copy number per cell of ${(num_her2/num_nuclei).toFixed(2)}.
+`
+        let body = add_ihc()
+        switch (group){
+                case 1: {
+                    header += "According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results \n" +
+                        "indicating a HER2/centromere ratio greater than or equal to 2.0 and an average HER2 copy \n" +
+                        "number >4.0 signals per cell are interpreted as ISH positive (Group 1) (1)"
+                    break;
+                }
+                case 2: {
+                    header += 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results\n' +
+                        'indicating a HER2/centromere ratio greater than or equal to 2.0 but with an average HER2 copy \n' +
+                        'number <4.0 signals per cell (Group 2) require additional workup'
+                     break;
+                }
+                case 3: {
+                    header += 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results \n' +
+                        'indicating a HER2/centromere ratio less than 2.0 but with an average HER2 copy ' + "\n" +
+                        'number >6.0 signals per cell (Group 3) require additional workup'
+                    break;
+                }
+                case 4: {
+                    header +=   "According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results \n" +
+                                "indicating a HER2/centromere ratio less than 2.0 and an average HER2 copy \n" +
+                                "number of at least 4.0 and <6.0 signals per cell (Group 4) require additional workup"
+                    break;
+                }
+                case 5: {
+                    header += "According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results \n" +
+                        "indicating a HER2/centromere ratio less than 2.0 and an average HER2 copy \n" +
+                        "number <4.0 signals per cell are interpreted as ISH negative (Group 5) (1)"
+                     break;
+                }
+            }
+        set_interpretation_header(header)
+        set_interpretation_body(body)
+    }
+
+      useEffect(add_interpretation,[group,result])
 
     const getPre = () => {
         var pre = `Her2, Breast Tumor, IHC/FISH
@@ -86,8 +85,7 @@ Result Summary:  ${result.toUpperCase()}
 
 Interpretation:
 
-${interpretation_header}
-${interpretation_body}
+${interpretation_header} ${interpretation_body}
 
 References:
    1.  Wolff, et al.  J Clin Oncol, 36(20)2105-2122, 2018

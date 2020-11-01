@@ -7,6 +7,7 @@ import ReportResults from "./components/ReportResults";
 import InterpretationPanel from "./components/InterpretationPanel";
 import ReportFooter from "./components/ReportFooter";
 import useClippy from 'use-clippy';
+import ReportRecountedResults from "./components/ReportRecountedResults";
 
 
 const className = 'HER2';
@@ -19,19 +20,19 @@ interface Props {
 }
 
 const OneStepPanel : React.FC<Props> = ({userName}) => {
-    const [specimen, set_specimen] = React.useState('Tissue, Slides, Formalin');
-    const [tissue_id, set_tissue_id] = React.useState('');
-    const [source, set_source] = React.useState('Breast');
-    const [ihc,set_ihc] = React.useState('0');
-    const [num_nuclei, set_num_nuclei] = React.useState(20);
-    const [num_her2, set_num_her2] = React.useState(0);
-    const [num_cep17, set_num_cep17] = React.useState(0);
+    const [specimen, set_specimen] = React.useState<string>('Tissue, Slides, Formalin');
+    const [tissue_id, set_tissue_id] = React.useState<string>('');
+    const [source, set_source] = React.useState<string>('Breast');
+    const [ihc,set_ihc] = React.useState<string>('0');
+    const [num_nuclei, set_num_nuclei] = React.useState< number >(20);
+    const [num_her2, set_num_her2] = React.useState< number >(0);
+    const [num_cep17, set_num_cep17] = React.useState< number >(0);
 
-    const [calculated, set_calculated] = React.useState(false);
-    const [ratio, set_ratio] = React.useState(0.0);
-    const [group, set_group] = React.useState(0);
-    const [result, set_result] = React.useState('Indeterminate');
-    const [recount, set_recount] = React.useState(false);
+    const [calculated, set_calculated] = React.useState<boolean>(false);
+    const [ratio, set_ratio] = React.useState< number >(0.0);
+    const [group, set_group] = React.useState< number >(0);
+    const [result, set_result] = React.useState<string>('Indeterminate');
+    const [recount, set_recount] = React.useState<boolean>(false);
 
 
     const [num_recount_nuclei, set_num_recount_nuclei] = React.useState(20);
@@ -39,11 +40,11 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
     const [num_recount_cep17, set_num_recount_cep17] = React.useState(0);
 
     const [recount_ratio, set_recount_ratio] = React.useState(0.0);
-    const [recalculated, set_recalculated] = React.useState(false);
+    const [recalculated, set_recalculated] = React.useState<boolean>(false);
 
-    const [report_generate, set_report_generate] = React.useState(false);
+    const [report_generate, set_report_generate] = React.useState<boolean>(false);
 
-    const [copySuccess, set_copySuccess] = React.useState('');
+    const [copySuccess, set_copySuccess] = React.useState<string>('');
 
 
     const [ clipboard, setClipboard ] = useClippy();
@@ -55,6 +56,17 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
         set_recalculated(false)
     }
     const fake_reset = () => {}
+
+    const initialize = () => {
+        set_specimen('Tissue, Slides, Formalin')
+        set_source('Breast')
+        set_tissue_id('')
+        set_ihc('0')
+        set_num_nuclei(20)
+        set_num_her2(0)
+        set_num_cep17(0)
+        reset()
+    }
 
 
     const handle_ihc_Change = async (event:any) => {
@@ -123,7 +135,12 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
                 }
                 else {
                     set_group(5)
-                    set_result(negative_result)
+                    if (ihc  === '3+'){
+                        set_result(positive_result)
+                    }
+                    else {
+                        set_result(negative_result)
+                    }
                 }
             }
             set_calculated(true)
@@ -138,10 +155,10 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
 
     const handle_copy = () => {
         const copyText = document.getElementById("report");
-        var ua = window.navigator.userAgent;
-
-        var msie = ua.indexOf('MSIE ');
-        const isIE: boolean = msie > 0
+        // var ua = window.navigator.userAgent;
+        //
+        // var msie = ua.indexOf('MSIE ');
+        // const isIE: boolean = msie > 0
 
         if (copyText != null) {
             let textToCopy = copyText.innerText;
@@ -178,6 +195,8 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
     <div></div>
     <div>
     <button className="btn btn-primary my-1" onClick={() => calc()}>Calculate</button>
+    <button className="btn btn-primary my-1" onClick={() => initialize()}>Reset</button>
+
     </div>
     </div>
     <div>
@@ -227,8 +246,13 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
     </div>
 
     <div id={'report'} className={'report'}>
-    <InterpretationPanel result={result} group={group}/>
-    <ReportResults ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio}/>
+    <InterpretationPanel  ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio} result={result} group={group}/>
+    {recalculated ?
+        <ReportRecountedResults ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio}
+                                    num_recounted_cep17={num_recount_cep17} num_recounted_her2={num_recount_her2} num_recounted_nuclei={num_recount_nuclei} recount_ratio={recount_ratio}/> :
+        <ReportResults ihc={ihc} num_cep17={num_cep17} num_her2={num_her2} num_nuclei={num_nuclei} ratio={ratio}/>
+    }
+
     <ReportFooter specimen={specimen} source={source} tissue_id={tissue_id}/>
     </div>
     </div>
