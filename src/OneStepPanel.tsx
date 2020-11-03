@@ -23,6 +23,7 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
     const [specimen, set_specimen] = React.useState<string>('Tissue, Slides, Formalin');
     const [tissue_id, set_tissue_id] = React.useState<string>('');
     const [source, set_source] = React.useState<string>('Breast');
+    const [ordered_date, set_ordered_date] = React.useState('');
     const [ihc,set_ihc] = React.useState<string>('0');
     const [num_nuclei, set_num_nuclei] = React.useState< number >(20);
     const [num_her2, set_num_her2] = React.useState< number >(0);
@@ -48,7 +49,9 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
 
 
     const [ clipboard, setClipboard ] = useClippy();
+    const noop = () => {
 
+    }
 
     const reset = () => {
         set_report_generate(false)
@@ -60,6 +63,7 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
     const initialize = () => {
         set_specimen('Tissue, Slides, Formalin')
         set_source('Breast')
+        set_ordered_date('')
         set_tissue_id('')
         set_ihc('0')
         set_num_nuclei(20)
@@ -177,19 +181,23 @@ const OneStepPanel : React.FC<Props> = ({userName}) => {
         <div className={className}>
         <h2 className={`${className}__title`}>Her2 IHC / Dual Probe ISH Assay</h2>
     <div className={`${className}__Wrapper`}>
-    <div >Specimen</div>
-    <div>
-    <textarea className={`${className}__LongTextarea`} name="specimen" placeholder="" value={specimen} onChange={(e) => {set_specimen(e.target.value)}}/>
-    </div>
-    <div>Source</div>
-    <div>
-    <textarea className={`${className}__LongTextarea`} name="source" placeholder="" value={source} onChange={(e) => {set_source(e.target.value)}}/>
-    </div>
-    <div>Tissue ID</div>
-    <div>
-    <textarea className={`${className}__LongTextarea`} name="tissue" placeholder="" value={tissue_id} onChange={(e) => {set_tissue_id(e.target.value)}}/>
-    </div>
-    <IHCInputPanel ihc={ihc} handle_ihc_Change={handle_ihc_Change}/>
+        <div>Tissue ID</div>
+        <div>
+            <textarea className={`${className}__LongTextarea`} name="tissue" placeholder="" value={tissue_id} onChange={(e) => {noop()}}/>
+        </div>
+        <div>Ordered Date</div>
+        <div>
+            <textarea className={`${className}__LongTextarea`} name="ordered_date" placeholder="" value={ordered_date} onChange={(e) => {noop()}}/>
+        </div>
+        <div >Specimen</div>
+        <div>
+            <textarea className={`${className}__LongTextarea`} name="specimen" placeholder="" value={specimen} onChange={(e) => {set_specimen(e.target.value)}}/>
+        </div>
+        <div>Source</div>
+        <div>
+            <textarea className={`${className}__LongTextarea`} name="source" placeholder="" value={source} onChange={(e) => {set_source(e.target.value)}}/>
+        </div>
+        <IHCInputPanel ihc={ihc} handle_ihc_Change={handle_ihc_Change}/>
     <CountsInputPanel num_nuclei={num_nuclei} set_num_nuclei={set_num_nuclei} num_her2={num_her2} set_num_her2={set_num_her2} num_cep17={num_cep17} set_num_cep17={set_num_cep17} reset={reset}/>
 
     <div></div>

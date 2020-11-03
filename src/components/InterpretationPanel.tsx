@@ -18,15 +18,19 @@ const InterpretationPanel : React.FC<Props> = ({ihc, num_cep17,num_her2,num_nucl
 
     const add_ihc = () :string => {
         let body = ""
-        if (group > 1 && group<5){
+        if (group==1){
+            body = ` \n\nIHC was performed on this sample per ASCO/CAP guidelines and was positive (${ihc}) (results reported separately).`
+        }
+        else if (group > 1 && group<5){
             if (ihc==="3+")
-                body = ` by IHC (1).\n\nIHC was performed on this sample per ASCO/CAP guidelines and was positive (${ihc}) (results reported separately).`
+                body = `and a positive IHC, are interpreted as ISH positive (1).\n\nIHC was performed on this sample per ASCO/CAP guidelines and was positive (${ihc}) (results reported separately).`
             else if (ihc==="2+"){
-                body = ` by counting an additional 
-20 cells in a separate part of the tumor.`
+                body = `require re-reviewing of IHC stained slide and counting 
+an additional 20 cells in a separate part of the tumor.  The results are interpreted based on the 
+second count.`
             }
             else {
-                body = ` by IHC (1).\n\nIHC was performed on this sample per ASCO/CAP guidelines and was negative (${ihc}) (results reported separately).`
+                body = `and a negative IHC, are interpreted as ISH negative (1).\n\nIHC was performed on this sample per ASCO/CAP guidelines and was negative (${ihc}) (results reported separately).`
             }
         }
         if (group==5 && ihc==="3+"){
@@ -50,19 +54,19 @@ copy number per cell of ${(num_her2/num_nuclei).toFixed(2)}.
                 case 2: {
                     header += 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results\n' +
                         'indicating a HER2/centromere ratio greater than or equal to 2.0 but with an average HER2 copy \n' +
-                        'number <4.0 signals per cell (Group 2) require additional workup'
+                        'number <4.0 signals per cell (Group 2) '
                      break;
                 }
                 case 3: {
                     header += 'According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results \n' +
                         'indicating a HER2/centromere ratio less than 2.0 but with an average HER2 copy ' + "\n" +
-                        'number >6.0 signals per cell (Group 3) require additional workup'
+                        'number >6.0 signals per cell (Group 3) '
                     break;
                 }
                 case 4: {
                     header +=   "According to current ASCO/CAP guidelines for HER2 testing in breast cancer, ISH results \n" +
                                 "indicating a HER2/centromere ratio less than 2.0 and an average HER2 copy \n" +
-                                "number of at least 4.0 and <6.0 signals per cell (Group 4) require additional workup"
+                                "number of at least 4.0 and <6.0 signals per cell (Group 4) "
                     break;
                 }
                 case 5: {

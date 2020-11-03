@@ -13,8 +13,7 @@ import ReportRecountedResults from "./components/ReportRecountedResults";
 
 
 interface Props {
-    userName: string;
-    results: Her2FishResults;
+    samples:[Her2FishResults];
 
 }
 const className = 'HER2';
@@ -22,10 +21,13 @@ const positive_result = 'Positive'
 const negative_result = 'Negative'
 const additional = 'Additional work-up required'
 
-const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
-    const [specimen, set_specimen] = React.useState(results.specimen);
-    const [tissue_id, set_tissue_id] = React.useState(results.tissue_id);
-    const [source, set_source] = React.useState(results.source);
+const TwoStep2Panel : React.FC<Props> = ({samples}) => {
+    const [index, set_index] = React.useState(-1);
+
+    const [specimen, set_specimen] = React.useState('');
+    const [tissue_id, set_tissue_id] = React.useState('');
+    const [source, set_source] = React.useState('');
+    const [ordered_date, set_ordered_date] = React.useState('');
     const [ihc,set_ihc] = React.useState('0');
 
     const [num_nuclei, set_num_nuclei] = React.useState(20);
@@ -49,6 +51,7 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
 
     const [copySuccess, set_copySuccess] = React.useState('');
 
+    const [saveSuccess, set_saveSuccess] = React.useState('');
 
     const [ clipboard, setClipboard ] = useClippy();
 
@@ -57,16 +60,32 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
         set_calculated(false)
         set_recalculated(false)
     }
+    const noop = () => {
+
+    }
     const fake_reset = () => {}
     const initialize = () => {
-        // set_specimen('Tissue, Slides, Formalin')
-        // set_source('Breast')
-        // set_tissue_id('')
+        set_specimen('')
+        set_source('')
+        set_tissue_id('')
+        set_ordered_date('')
         set_ihc('0')
         set_num_nuclei(20)
         set_num_her2(0)
         set_num_cep17(0)
         reset()
+    }
+    const select = (i:number) => {
+        set_index(i)
+        set_specimen(samples[i].specimen)
+        set_source(samples[i].source)
+        set_tissue_id(samples[i].tissue_id)
+        set_ordered_date(samples[i].ordered_date)
+        set_ihc(samples[i].ihc)
+        set_num_nuclei(20)
+        set_num_her2(0)
+        set_num_cep17(0)
+
     }
 
 
@@ -153,6 +172,18 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
         set_report_generate(true)
     }
 
+    const finalize = () => {
+        samples[index].finalized = true
+        samples[index].finalized_by = 'M Jones, MD'
+        let d = new Date();
+        samples[index].finalized_datetime = d.toLocaleDateString() + ' ' + d.toLocaleTimeString();
+        set_saveSuccess('Done')
+        setTimeout(function () {
+            initialize();
+            set_saveSuccess('');
+        }, 2000);
+
+    }
 
     const handle_copy = () => {
         const copyText = document.getElementById("report");
@@ -176,7 +207,68 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
     return (
         <div className={className}>
             <h2 className={`${className}__title`}>Her2 IHC / Dual Probe ISH Assay</h2>
+            <div className="Table">
+                <div className="Title">
+                    <p>Samples</p>
+                </div>
+                <div className="Heading">
+                    <div className="Cell">
+                        <p>Tissue ID</p>
+                    </div>
+                    <div className="Cell">
+                        <p>Order ID</p>
+                    </div>
+                    <div className="Cell">
+                        <p>Ordered Date</p>
+                    </div>
+                    <div className="WideCell">
+                        <p>Ready?</p>
+                    </div>
+                    <div className="WideCell">
+                        <p>Finalized?</p>
+                    </div>
+                    <div className="Cell">
+                        <p></p>
+                    </div>
+                </div>
+
+                {samples.map(
+                    (one_Sample, i:number) => !!one_Sample && (
+                        <div className="Row">
+                            <div className="Cell">
+                                <p>{one_Sample.tissue_id}</p>
+                            </div>
+                            <div className="Cell">
+                                <p>{one_Sample.ordered_date}</p>
+                            </div>
+                            <div className="Cell">
+                                <p>{one_Sample.ordered_date}</p>
+                            </div>
+                            <div className="WideCell">
+                                <p>{one_Sample.completed ? 'Yes (' + one_Sample.completed_by + ', ' + one_Sample.completed_datetime + ')'
+                                    : 'No'}</p>
+                            </div>
+                            <div className="WideCell">
+                                <p>{one_Sample.finalized ? 'Yes (' + one_Sample.finalized_by + ', ' + one_Sample.finalized_datetime + ')'
+                                    : 'No'}</p>
+                            </div>
+                            <div className="Cell">
+                                <p>{one_Sample.completed && !one_Sample.finalized && <button className="btn btn-primary my-1" onClick={() => select(i)}>Select</button>}</p>
+                            </div>
+                        </div>
+                    )
+                )}
+
+            </div>
             <div className={`${className}__Wrapper`}>
+                <div>Tissue ID</div>
+                <div>
+                    <textarea className={`${className}__LongTextarea`} name="tissue" placeholder="" value={tissue_id} onChange={(e) => {noop()}}/>
+                </div>
+                <div>Ordered Date</div>
+                <div>
+                    <textarea className={`${className}__LongTextarea`} name="ordered_date" placeholder="" value={ordered_date} onChange={(e) => {noop()}}/>
+                </div>
                 <div >Specimen</div>
                 <div>
                     <textarea className={`${className}__LongTextarea`} name="specimen" placeholder="" value={specimen} onChange={(e) => {set_specimen(e.target.value)}}/>
@@ -185,13 +277,9 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
                 <div>
                     <textarea className={`${className}__LongTextarea`} name="source" placeholder="" value={source} onChange={(e) => {set_source(e.target.value)}}/>
                 </div>
-                <div>Tissue ID</div>
-                <div>
-                    <textarea className={`${className}__LongTextarea`} name="tissue" placeholder="" value={tissue_id} onChange={(e) => {set_tissue_id(e.target.value)}}/>
-                </div>
                 <IHCInputPanel ihc={ihc} handle_ihc_Change={handle_ihc_Change}/>
 
-                <CountsInputPanelReviewer num_nuclei={num_nuclei} set_num_nuclei={set_num_nuclei} num_her2={num_her2} set_num_her2={set_num_her2} num_cep17={num_cep17} set_num_cep17={set_num_cep17} reset={reset} results={results}/>
+                <CountsInputPanelReviewer num_nuclei={num_nuclei} set_num_nuclei={set_num_nuclei} num_her2={num_her2} set_num_her2={set_num_her2} num_cep17={num_cep17} set_num_cep17={set_num_cep17} reset={reset} results={index>-1 ? samples[index]: null}/>
                 <div></div>
                 <div>
                     <button className="btn btn-primary my-1" onClick={() => calc()}>Calculate</button>
@@ -252,6 +340,8 @@ const TwoStep2Panel : React.FC<Props> = ({userName,results}) => {
                                     }
                                     <ReportFooter specimen={specimen} source={source} tissue_id={tissue_id}/>
                                 </div>
+                                <button className="btn btn-primary my-1" onClick={() => finalize()}>Finalize</button>
+                                {saveSuccess}
                             </div>
                         }
                     </div>
